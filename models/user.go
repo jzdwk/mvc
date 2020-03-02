@@ -1,14 +1,13 @@
 package models
 
 import (
-	"github.com/mvc/common"
 	"github.com/mvc/util/encode"
 	"time"
 )
 
 type UserType int
 
-const PWD_SALT = "cmCc#1.sgm&168"
+const PWD_SALT = "mvc#1.&168"
 
 type userModel struct{}
 
@@ -26,19 +25,6 @@ type User struct {
 	Deleted    bool       `orm:"default(false)" json:"deleted"`
 	CreateTime *time.Time `orm:"auto_now_add;type(datetime)" json:"createTime"`
 	UpdateTime *time.Time `orm:"auto_now;type(datetime)" json:"updateTime"`
-}
-
-type UserView struct {
-	Id   int64  `json:"id"`
-	Name string `json:"name"`
-
-	Email      string `json:"email"`
-	Phone      string `json:"phone"`
-	Admin      bool   `json:"admin"`
-	LastLogin  string `json:"lastLogin"`
-	LastIp     string `json:"lastIp"`
-	CreateTime string `json:"createTime"`
-	UpdateTime string `json:"updateTime"`
 }
 
 type UserStatistics struct {
@@ -101,36 +87,6 @@ func (*userModel) UpdateUserById(m *User) (err error) {
 	_, err = Ormer().Update(v)
 	return
 
-}
-
-func (*userModel) GetUserCount4View(q *common.QueryParam) (total int64, err error) {
-	qb := mysqlBuilder().Select("count(T0.id)").From("user T0")
-	qb.Where(" T0.deleted = 0")
-	var params []interface{}
-	if name := q.Query["name"]; name != nil && name != "" {
-		qb.And(" T0.name = ? ")
-		params = append(params, q.Query["name"])
-	}
-	err = Ormer().Raw(qb.String(), params).QueryRow(&total)
-	return
-}
-
-func (*userModel) GetUserPaged4View(q *common.QueryParam) (rst []UserView, err error) {
-	qb := mysqlBuilder().Select("T0.id,T0.name,T0.email,T0.phone,T0.admin,T0.last_login,T0.last_ip,T0.create_time,T0.update_time").From("user T0")
-	qb.Where(" T0.deleted = 0 ")
-	var params []interface{}
-	if name := q.Query["name"]; name != nil && name != "" {
-		qb.And(" T0.name = ? ")
-		params = append(params, q.Query["name"])
-	}
-	qb = BuildGroupBy(qb, q.GroupBy)
-	qb = BuildOrder(qb, q.Order)
-	qb = qb.Limit(int(q.Limit())).Offset(int(q.Offset()))
-	_, err = Ormer().Raw(qb.String(), params).QueryRows(&rst)
-	if err != nil {
-		return nil, err
-	}
-	return
 }
 
 func (*userModel) GetAll(users *[]*User) (num int64, err error) {
