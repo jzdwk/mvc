@@ -2,8 +2,8 @@ package base
 
 import (
 	"fmt"
-	"mvc/common"
-	"mvc/util/cameltrans"
+	"github.com/mvc/common"
+	"github.com/mvc/util/cameltrans"
 	"strconv"
 )
 

@@ -8,7 +8,7 @@ package models
 import (
 	"errors"
 	"github.com/astaxie/beego/orm"
-	"mvc/common"
+	"github.com/mvc/common"
 )
 
 const SQL_ERROR_CODE int64 = -1

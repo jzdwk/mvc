@@ -5,7 +5,7 @@
 */
 package controllers
 
-import "mvc/controllers/base"
+import "github.com/mvc/controllers/base"
 
 type UserController struct {
 	base.ApiController

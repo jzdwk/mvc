@@ -3,9 +3,9 @@ package base
 import (
 	"github.com/astaxie/beego"
 	"github.com/dgrijalva/jwt-go"
-	"mvc/models"
-	"mvc/models/response/errors"
-	"mvc/util/logs"
+	"github.com/mvc/models"
+	"github.com/mvc/models/response/errors"
+	"github.com/mvc/util/logs"
 	"net/http"
 	"strings"
 )
