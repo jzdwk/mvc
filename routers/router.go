@@ -18,7 +18,7 @@ func init() {
 
 	// Beego注解路由代码生成规则和程序运行路径相关，需要改写一下避免产生不一致的文件名
 	if beego.BConfig.RunMode == "dev" && path.Base(beego.AppPath) == "_build" {
-		beego.AppPath = path.Join(path.Dir(beego.AppPath), "/sigma")
+		beego.AppPath = path.Join(path.Dir(beego.AppPath), "/mvc")
 	}
 	//swagger
 	if beego.BConfig.RunMode == "dev" {
@@ -35,7 +35,7 @@ func init() {
 		AllowCredentials: true,
 	}))
 
-	ns := beego.NewNamespace("/sigma/v1",
+	ns := beego.NewNamespace("/mvc",
 		beego.NSNamespace("/user",
 			beego.NSInclude(
 				&controllers.UserController{},

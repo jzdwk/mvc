@@ -1,15 +1,5 @@
 package base
 
-import (
-	"github.com/astaxie/beego"
-	"github.com/dgrijalva/jwt-go"
-	"github.com/mvc/models"
-	"github.com/mvc/models/response/errors"
-	"github.com/mvc/util/logs"
-	"net/http"
-	"strings"
-)
-
 var (
 	PublishRequestMessageMethodFilter = []string{
 		"POST",
@@ -20,13 +10,13 @@ var (
 )
 
 type ApiController struct {
-	//ResultHandlerController
 	ParamBuilderController
-	User *models.User
+	//User *models.User
 }
 
 func (c *ApiController) Prepare() {
-	authString := c.Ctx.Input.Header("Authorization")
+	//base auth token check
+	/*authString := c.Ctx.Input.Header("Authorization")
 
 	kv := strings.Split(authString, " ")
 	if len(kv) != 2 || kv[0] != "Bearer" {
@@ -64,5 +54,5 @@ func (c *ApiController) Prepare() {
 	c.User, err = models.UserModel.GetUserDetail(aud)
 	if err != nil {
 		c.CustomAbort(http.StatusInternalServerError, err.Error())
-	}
+	}*/
 }
