@@ -40,6 +40,10 @@ func init() {
 			beego.NSInclude(
 				&controllers.UserController{},
 			),
+		), beego.NSNamespace("/test",
+			beego.NSInclude(
+				&controllers.TestController{},
+			),
 		),
 	)
 

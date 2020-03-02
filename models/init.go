@@ -9,6 +9,7 @@ var (
 	globalOrm orm.Ormer
 	once      sync.Once
 	UserModel *userModel
+	TestModel *testModel
 )
 
 func init() {
@@ -16,6 +17,7 @@ func init() {
 	orm.Debug = true
 	// init orm tables
 	orm.RegisterModel(new(User))
+	orm.RegisterModel(new(Test))
 	// init models
 	UserModel = &userModel{}
 }
