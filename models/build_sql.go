@@ -11,7 +11,7 @@ var mysqlOperators = map[string]string{
 	"contains": " LIKE BINARY ?",
 }
 
-func mysqlBuilder() *orm.MySQLQueryBuilder {
+func MysqlBuilder() *orm.MySQLQueryBuilder {
 	return new(orm.MySQLQueryBuilder)
 }
 

@@ -1,0 +1,5 @@
+routers/comment*
+*.tmp
+.idea/
+conf/app.conf
+

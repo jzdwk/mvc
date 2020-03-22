@@ -11,4 +11,5 @@ func main() {
 	//Db init
 	initial.InitDb()
 	beego.Run()
+
 }
