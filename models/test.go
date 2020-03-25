@@ -17,6 +17,6 @@ type Test struct {
 
 type testModel struct{}
 
-func (t *Test) TableName() string {
+func (t *testModel) TableName() string {
 	return "test"
 }

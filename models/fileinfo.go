@@ -3,7 +3,7 @@
 @Author : jzd
 @Project: mvc
 */
-package upload
+package models
 
 type FileInfo struct {
 	Id         int64  `orm:"column(id);pk;auto" json:"id,omitempty"`
@@ -14,7 +14,7 @@ type FileInfo struct {
 	Location   string `orm:"column(location)" json:"location"`
 }
 
-type FileInfoModel struct{}
+type fileInfoModel struct{}
 
 func (t *FileInfo) TableName() string {
 	return "fileinfo"

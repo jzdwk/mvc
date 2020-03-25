@@ -9,9 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/mvc/controllers/base"
-	cupload "github.com/mvc/controllers/upload"
 	"github.com/mvc/models"
-	"github.com/mvc/models/upload"
 	"github.com/mvc/util/logs"
 	"io/ioutil"
 	"os"
@@ -41,7 +39,7 @@ func (c *UploadController) Post() {
 		return
 	}
 
-	var v upload.Chunk
+	var v models.Chunk
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err != nil {
 		logs.Error("get body error. %v", err)
 		c.AbortBadRequestFormat("test")
@@ -58,7 +56,7 @@ func (c *UploadController) Post() {
 		return
 	}
 
-	if _, err := models.Add(new(upload.Chunk), &v); err != nil {
+	if _, err := models.Add(new(models.Chunk), &v); err != nil {
 		logs.Error("create test error. %v", err)
 		c.HandleError(err)
 		return
@@ -79,7 +77,7 @@ func (c *UploadController) CheckChunk() {
 	param := make(map[string]interface{})
 	param["Identifier"] = identifier
 	param["ChunkNumber"] = chunkNum
-	if models.IsExist(upload.Chunk{}, param) {
+	if models.IsExist(models.Chunk{}, param) {
 		c.AbortBadRequest("chunk already exist")
 	}
 	c.Success("chunk ok")
@@ -94,7 +92,7 @@ func (c *UploadController) CheckChunk() {
 // @router /  [post]
 func (c *UploadController) MergeFile() {
 	//get file info
-	var v upload.FileInfo
+	var v models.FileInfo
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err != nil {
 		logs.Error("get body error. %v", err)
 		c.AbortBadRequestFormat("test")
@@ -102,7 +100,7 @@ func (c *UploadController) MergeFile() {
 	}
 	filename := v.FileName
 	file := FILE_PATH + "/" + v.Identifier + "/" + filename
-	if err := cupload.Merge(file, v.Identifier); err != nil {
+	if err := Merge(file, v.Identifier); err != nil {
 		logs.Error("merge file error. %v", err)
 		c.AbortBadRequest("merge file error.")
 	}

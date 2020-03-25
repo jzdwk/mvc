@@ -105,3 +105,12 @@ func (c *TestController) Delete() {
 	}
 	c.Success("Delete test success")
 }
+
+// @router /upload [post]
+func (c *TestController) Upload() {
+	req := c.Ctx.Request
+	logs.Info(req.Header)
+	logs.Info(req.Body)
+	logs.Info(req.URL)
+	c.Success("test")
+}

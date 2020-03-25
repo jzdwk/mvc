@@ -3,12 +3,10 @@
 @Author : jzd
 @Project: mvc
 */
-package upload
+package controllers
 
 import (
-	"github.com/mvc/controllers"
 	"github.com/mvc/models"
-	"github.com/mvc/models/upload"
 	"github.com/mvc/util/logs"
 	"io/ioutil"
 	"os"
@@ -24,10 +22,10 @@ func Merge(targetFile string, identifier string) error {
 		return err
 	}
 	//append content for each chunk
-	var list []upload.Chunk
+	var list []models.Chunk
 	list, err = models.ChunkModel.GetChunksByIdentifier(identifier)
 	for _, v := range list {
-		f2, err := os.OpenFile(controllers.FILE_PATH+"/"+identifier+"/"+strconv.Itoa(v.ChunkNumber), os.O_RDONLY, 0600)
+		f2, err := os.OpenFile("/"+identifier+"/"+strconv.Itoa(v.ChunkNumber), os.O_RDONLY, 0600)
 		if err != nil {
 			logs.Error("create full file error")
 			return err

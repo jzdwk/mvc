@@ -2,7 +2,6 @@ package models
 
 import (
 	"github.com/astaxie/beego/orm"
-	"github.com/mvc/models/upload"
 	"sync"
 )
 
@@ -10,8 +9,8 @@ var (
 	globalOrm  orm.Ormer
 	once       sync.Once
 	UserModel  *userModel
-	ChunkModel *upload.ChunkModel
-	FileModel  *upload.FileInfoModel
+	ChunkModel *chunkModel
+	FileModel  *fileInfoModel
 )
 
 func init() {
@@ -20,12 +19,12 @@ func init() {
 	// init orm tables
 	orm.RegisterModel(new(User))
 	orm.RegisterModel(new(Test))
-	orm.RegisterModel(new(upload.Chunk))
-	orm.RegisterModel(new(upload.FileInfo))
+	orm.RegisterModel(new(Chunk))
+	orm.RegisterModel(new(FileInfo))
 	// init models
 	UserModel = &userModel{}
-	ChunkModel = &upload.ChunkModel{}
-	FileModel = &upload.FileInfoModel{}
+	ChunkModel = &chunkModel{}
+	FileModel = &fileInfoModel{}
 }
 
 // singleton init ormer ,only use for normal db operation
