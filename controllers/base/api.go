@@ -1,5 +1,9 @@
 package base
 
+import (
+	"github.com/mvc/models"
+)
+
 var (
 	PublishRequestMessageMethodFilter = []string{
 		"POST",
@@ -11,7 +15,7 @@ var (
 
 type ApiController struct {
 	ParamBuilderController
-	//User *models.User
+	User *models.User
 }
 
 func (c *ApiController) Prepare() {
