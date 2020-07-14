@@ -8,10 +8,10 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/mvc/controllers/base"
-	"github.com/mvc/models"
-	"github.com/mvc/util/logs"
 	"io/ioutil"
+	"mvc/controllers/base"
+	"mvc/models"
+	"mvc/util/logs"
 	"os"
 	"path/filepath"
 	"strconv"

@@ -5,7 +5,7 @@
 */
 package controllers
 
-import "github.com/mvc/controllers/base"
+import "mvc/controllers/base"
 
 //user management
 type UserController struct {

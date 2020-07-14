@@ -2,9 +2,9 @@ package main
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/mvc/initial"
-	_ "github.com/mvc/models"
-	_ "github.com/mvc/routers"
+	"mvc/initial"
+	_ "mvc/models"
+	_ "mvc/routers"
 )
 
 func main() {

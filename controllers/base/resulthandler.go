@@ -3,10 +3,9 @@ package base
 import (
 	"encoding/json"
 	"fmt"
-	erroresult "github.com/mvc/models/response/errors"
-	"github.com/mvc/util/hack"
-	"github.com/mvc/util/logs"
-	"k8s.io/apimachinery/pkg/api/errors"
+	erroresult "mvc/models/response/errors"
+	"mvc/util/hack"
+	"mvc/util/logs"
 	"net/http"
 
 	"github.com/astaxie/beego"
@@ -64,10 +63,6 @@ func (c *ResultHandlerController) HandleError(err error) int {
 	switch e := err.(type) {
 	// deal with kubernetes errors
 
-	case errors.APIStatus:
-		errorResult.Code = int(e.Status().Code)
-		errorResult.SubCode = errorResult.Code
-		errorResult.Msg = e.Status().Message
 	case *mysql.MySQLError:
 		errorResult.Code = http.StatusBadRequest
 		errorResult.SubCode = int(e.Number)

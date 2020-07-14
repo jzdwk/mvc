@@ -7,9 +7,9 @@ package controllers
 
 import (
 	"encoding/json"
-	"github.com/mvc/controllers/base"
-	"github.com/mvc/models"
-	"github.com/mvc/util/logs"
+	"mvc/controllers/base"
+	"mvc/models"
+	"mvc/util/logs"
 )
 
 type TestController struct {

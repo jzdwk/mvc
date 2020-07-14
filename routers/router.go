@@ -10,7 +10,7 @@ package routers
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/plugins/cors"
-	"github.com/mvc/controllers"
+	"mvc/controllers"
 	"path"
 )
 

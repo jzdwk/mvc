@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/mvc/util/encode"
+	"mvc/util/encode"
 	"time"
 )
 

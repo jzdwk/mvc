@@ -1,7 +1,7 @@
 package response
 
 import (
-	"github.com/mvc/models"
+	"mvc/models"
 	"time"
 )
 

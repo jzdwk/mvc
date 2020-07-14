@@ -6,9 +6,9 @@
 package controllers
 
 import (
-	"github.com/mvc/models"
-	"github.com/mvc/util/logs"
 	"io/ioutil"
+	"mvc/models"
+	"mvc/util/logs"
 	"os"
 	"strconv"
 )
