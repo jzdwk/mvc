@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"mvc/controllers/base"
 	"mvc/models"
+	"mvc/token"
 	"mvc/util/logs"
 )
 
@@ -109,8 +110,31 @@ func (c *TestController) Delete() {
 // @router /upload [post]
 func (c *TestController) Upload() {
 	req := c.Ctx.Request
+	p := c.ApiController.GetString("project")
+	t := c.ApiController.GetString("tag")
 	logs.Info(req.Header)
 	logs.Info(req.Body)
 	logs.Info(req.URL)
-	c.Success("test")
+	c.Success("test" + p + t)
+}
+
+// @Title Auth
+// @Description docker v2 registry 3rd-part authNZ service
+// @Failure 400
+// @router /auth  [get]
+func (c *TestController) Auth() {
+
+	request := c.Ctx.Request
+	logs.Info("URL for token request: %s", request.URL.String())
+	//get harbor-registry
+	service := c.GetString("service")
+	//user
+	usr := c.GetString("account")
+	tokenCreator := token.GeneralCreator{Service: service, Usr: usr}
+	token2, err := tokenCreator.Create(request)
+	if err != nil {
+		logs.Error(err.Error())
+	}
+	c.Data["json"] = token2
+	c.ServeJSON()
 }
